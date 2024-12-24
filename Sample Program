@@ -1,0 +1,59 @@
+import pandas as pdR 
+data = { 
+    'Time': ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'], 
+    'Energy_Usage': [100, 120, 150, 180, 200, 180, 150, 120] 
+} 
+df = pd.DataFrame(data) 
+peak_hours = ['10:00', '11:00', '12:00'] 
+peak_usage = df[df['Time'].isin(peak_hours)]['Energy_Usage'].max() 
+df.loc[df['Time'] == '14:00', 'Energy_Usage'] += peak_usage - df.loc[df['Time'] == '10:00', 
+'Energy_Usage'].values[0] 
+print(df) 
+import pandas as pd 
+data = { 
+    'Time': ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'], 
+    'Energy_Usage': [100, 120, 150, 180, 200, 180, 150, 120] 
+} 
+df = pd.DataFrame(data) 
+ 
+ 
+ 
+flexible_loads = ['Washing Machine'] 
+df.loc[df['Time'] == '14:00', 'Energy_Usage'] += df.loc[df['Time'] == '10:00', 
+'Energy_Usage'].values[0] 
+print(df) 
+import pandas as pd 
+data = { 
+    'Appliance': ['Lighting', 'Heating', 'Cooling', 'Refrigeration'], 
+    'Energy_Usage': [100, 200, 300, 150] 
+} 
+df = pd.DataFrame(data) 
+efficiency_measures = { 
+    'Lighting': 0.8,   
+    'Heating': 0.9,    
+    'Cooling': 0.85,   
+    'Refrigeration': 0.95   
+} 
+df['Energy_Usage'] *= df['Appliance'].map(efficiency_measures) 
+ 
+ 
+ 
+print(df) 
+import pandas as pd 
+data = { 
+    'Time': ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'], 
+    'Energy_Usage': [100, 120, 150, 180, 200, 180, 150, 120] 
+} 
+df = pd.DataFrame(data) 
+solar_data = { 
+    'Time': ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'], 
+    'Solar_Production': [50, 70, 100, 120, 150, 120, 100, 70] 
+} 
+solar_df = pd.DataFrame(solar_data) 
+df['Energy_Usage'] -= solar_df['Solar_Production'] 
+print(df) 
+ 
+ 
+ 
+
+ 
